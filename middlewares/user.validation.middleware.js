@@ -1,15 +1,15 @@
 const { user } = require('../models/user');
 const createUserValid = (req, res, next) => {
-    // TODO: Implement validatior for user entity during creation
+  // TODO: Implement validatior for user entity during creation
 
-    next();
-}
+  next();
+};
 
 const updateUserValid = (req, res, next) => {
-    // TODO: Implement validatior for user entity during update
+  // TODO: Implement validatior for user entity during update
 
-    next();
-}
+  next();
+};
 
 exports.createUserValid = createUserValid;
 exports.updateUserValid = updateUserValid;

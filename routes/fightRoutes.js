@@ -4,6 +4,7 @@ const { createUserValid, updateUserValid } = require('../middlewares/user.valida
 const { responseMiddleware } = require('../middlewares/response.middleware');
 
 
+// eslint-disable-next-line new-cap
 const router = Router();
 
 // OPTIONAL TODO: Implement route controller for fights
