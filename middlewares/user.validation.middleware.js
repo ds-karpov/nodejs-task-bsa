@@ -66,7 +66,7 @@ const updateUserValid = (req, res, next) => {
     }
     next();
   } catch (e) {
-    res.status(500).send({
+    res.status(500).send({ // TODO move to error handler middleware
       error: true,
       message: 'Internal server error'
     });

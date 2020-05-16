@@ -16,7 +16,14 @@ const isPhoneNumber = phone => {
   return phone.match(reg);
 };
 
-const userExists = (service, id) => service.search(id);
+const checkValueLimits = (value, min, max) => {
+  if (!isNaN(value / 1)) {
+    return !(value < min || value > max);
+  }
+  return false;
+};
+
+const objExists = (service, id) => service.search(id);
 
 const uniqueEmail = (service, email) => !service.search({ email });
 
@@ -56,9 +63,34 @@ const fieldsValidation = (service, user) => {
       errors.push('Please enter a password of 3 - 128 characters.');
     }
   }
+
+  if (user.hasOwnProperty('name')) {
+    if (!minLength(user.name, 2) || !maxLength(user.name, 46)) {
+      errors.push('Please enter a name of 2 - 46 characters.');
+    }
+  }
+
+  if (user.hasOwnProperty('health')) {
+    if (!checkValueLimits(user.health, 10, 100)) {
+      errors.push('Health value should be 10...100');
+    }
+  }
+
+  if (user.hasOwnProperty('power')) {
+    if (!checkValueLimits(user.power, 1, 10)) {
+      errors.push('Power value should be 1...10');
+    }
+  }
+
+  if (user.hasOwnProperty('defense')) {
+    if (!checkValueLimits(user.defense, 1, 10)) {
+      errors.push('Defense value should be 1...10');
+    }
+  }
   return errors;
 };
 
-exports.userExists = userExists;
+exports.userExists = objExists;
+exports.fighterExists = objExists;
 exports.uniqueEmail = uniqueEmail;
 exports.fieldsValidation = fieldsValidation;
