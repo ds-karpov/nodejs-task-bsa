@@ -7,11 +7,13 @@ const router = Router();
 
 router.post('/login', (req, res, next) => {
   try {
-    // TODO: Implement login action (get the user if it exist with entered credentials)
-    // eslint-disable-next-line no-undef
-    res.data = data;
+    const data = AuthService.login({ email: req.body.email, password: req.body.password });
+
+    if (data) {
+      res.data = data;
+    }
   } catch (err) {
-    res.err = err;
+    res.err = err.message;
   } finally {
     next();
   }
