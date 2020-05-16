@@ -14,6 +14,9 @@ routes(app);
 app.use('/', express.static('./client/build'));
 
 const port = 3050;
-app.listen(port, () => null);
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Server is up!!! Check ${port} port`);
+});
 
 exports.app = app;
