@@ -1,8 +1,12 @@
 const UserService = require('./userService');
 
 class AuthService {
+  constructor(repository) {
+    this.repository = repository;
+  }
+
   login(userData) {
-    const user = UserService.search(userData);
+    const user = this.repository.search(userData);
 
     if (!user) {
       throw Error('User not found');
@@ -11,4 +15,4 @@ class AuthService {
   }
 }
 
-module.exports = new AuthService();
+module.exports = new AuthService(UserService);
